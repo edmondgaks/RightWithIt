@@ -1,1 +1,1 @@
-"# RightWithIt" 
+# RightWithIt
