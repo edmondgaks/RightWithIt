@@ -1,12 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
-import { Button } from 'react-native-web';
+import { StyleSheet, Text, View, Image, SafeAreaView, Button, Alert } from 'react-native';
+
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <Image source={require("./assets/Safejourney.png")} />
-      <Text>Lead me Please</Text>
+      <Button
+      color="orange"
+      title="Click Me" 
+      onPress={() => Alert.alert("My title", "My message", [
+        {text: "Yes", onPress: () => console.log("Yes")},
+        {text: "No", onPress: () => console.log("No")},
+      ])} />
     </SafeAreaView>
   );
 }
