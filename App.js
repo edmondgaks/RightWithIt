@@ -1,19 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, SafeAreaView, Button, Alert } from 'react-native';
+import { Dimensions,StyleSheet, Text, View, Image, SafeAreaView,Button, Alert, Platform } from 'react-native';
+import LoginScreen from './screens/LoginScreen';
 
 
 export default function App() {
+  // console.log(Dimensions.get("screen"));
   return (
-    <SafeAreaView style={styles.container}>
-      <Image source={require("./assets/Safejourney.png")} />
-      <Button
-      color="orange"
-      title="Click Me" 
-      onPress={() => Alert.alert("My title", "My message", [
-        {text: "Yes", onPress: () => console.log("Yes")},
-        {text: "No", onPress: () => console.log("No")},
-      ])} />
-    </SafeAreaView>
+    <LoginScreen />
   );
 }
 
@@ -21,7 +14,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
 });
