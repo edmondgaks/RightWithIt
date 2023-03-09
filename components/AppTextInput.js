@@ -14,14 +14,16 @@ function AppTextInput({icon, ...otherProps}) {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#D9D9D9',
-        borderRadius: 15,
+        borderRadius: 5,
         flexDirection: "row",
         width: '100%',
         padding: 15,
+        width: "80%",
         marginVertical: 10,
     },
     textInput: {
         fontSize: 18,
+        color: '#0c0c0c',
         fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir"
     },
     icon: {
