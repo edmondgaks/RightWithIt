@@ -5,7 +5,7 @@ import { Platform, TextInput, StyleSheet ,View } from 'react-native';
 function AppTextInput({icon, ...otherProps}) {
     return (
         <View style={styles.container}>
-            {icon && <MaterialCommunityIcons name={icon} />}
+            {icon && <MaterialCommunityIcons name={icon} size={20} style={styles.icon} />}
             <TextInput style={styles.textInput} {...otherProps} />
         </View>
     );
@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
     textInput: {
         fontSize: 18,
         fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir"
+    },
+    icon: {
+        marginRight: 10,
     }
 })
 
