@@ -5,7 +5,7 @@ import AppTextInput from '../components/AppTextInput';
 import { Formik } from 'formik';
 
 function LoginScreen(props) {
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     return (
         <ImageBackground
@@ -35,37 +35,45 @@ function LoginScreen(props) {
                 borderTopLeftRadius: 30,
                 borderTopRightRadius: 30,
             }}>
-            <Text style={{
-                alignSelf: "flex-start",
-                fontSize: 15,
-                marginLeft: 50,
-                color: "#8E8C8C",
-            }}>Email</Text>
-            <AppTextInput 
-             autoCapitalize='none'
-             autoCorrect={false}
-             icon="email"
-             keyboardType='email-address'
-             placeholder='Email'
-             textContentType='emailAddress'
-             onChangeText={text => setEmail(text)} />
-            <Text style={{
-                alignSelf: "flex-start",
-                fontSize: 15,
-                marginLeft: 50,
-                color: "#8E8C8C",
-            }}>Password</Text>
-            <AppTextInput
-             autoCapitalize='none'
-             autoCorrect={false}
-             icon="lock"
-             secureTextEntry
-             placeholder='Password'
-             textContentType='password'
-             onChangeText={text => setEmail(text)} />
-             <AppButton title="Sign up" />
-            </View>
-        </ImageBackground>
+            <Formik 
+                initialValues={{ email: '', password: ''}}
+                onSubmit={(values) => console.log(values)}>
+                {({handleChange,handleSubmit}) => (
+                    <>
+                        <Text style={{
+                            alignSelf: "flex-start",
+                            fontSize: 15,
+                            marginLeft: 50,
+                            color: "#8E8C8C",
+                        }}>Email</Text>
+                        <AppTextInput 
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            icon="email"
+                            keyboardType='email-address'
+                            placeholder='Email'
+                            textContentType='emailAddress'
+                            onChangeText={handleChange("email")} />
+                        <Text style={{
+                            alignSelf: "flex-start",
+                            fontSize: 15,
+                            marginLeft: 50,
+                            color: "#8E8C8C",
+                        }}>Password</Text>
+                        <AppTextInput
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            icon="lock"
+                            secureTextEntry
+                            placeholder='Password'
+                            textContentType='password'
+                            onChangeText={handleChange("password")} />
+                        <AppButton title="Sign up" onPress={handleSubmit} />
+                    </>
+                )}
+            </Formik>
+        </View>
+    </ImageBackground>
         
     )
 }
