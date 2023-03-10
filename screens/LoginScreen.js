@@ -3,6 +3,12 @@ import { ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native
 import AppButton from '../components/AppButton';
 import AppTextInput from '../components/AppTextInput';
 import { Formik } from 'formik';
+import * as Yup from 'yup';
+
+const validationSchema = Yup.object().shape({
+    email: Yup.string().required().email().label("Email"),
+    password: Yup.string().required().min(4).label("Password")
+});
 
 function LoginScreen(props) {
     const [email, setEmail] = useState();
@@ -37,8 +43,9 @@ function LoginScreen(props) {
             }}>
             <Formik 
                 initialValues={{ email: '', password: ''}}
-                onSubmit={(values) => console.log(values)}>
-                {({handleChange,handleSubmit}) => (
+                onSubmit={(values) => console.log(values)}
+                validationSchema={validationSchema}>
+                {({ handleChange,handleSubmit, errors }) => (
                     <>
                         <Text style={{
                             alignSelf: "flex-start",
@@ -55,6 +62,12 @@ function LoginScreen(props) {
                             textContentType='emailAddress'
                             onChangeText={handleChange("email")} />
                         <Text style={{
+                            color: "red",
+                            alignSelf: "flex-start",
+                            fontSize: 12,
+                            marginLeft: 50,
+                        }}>{errors.email}</Text>
+                        <Text style={{
                             alignSelf: "flex-start",
                             fontSize: 15,
                             marginLeft: 50,
@@ -68,6 +81,12 @@ function LoginScreen(props) {
                             placeholder='Password'
                             textContentType='password'
                             onChangeText={handleChange("password")} />
+                        <Text style={{
+                            color: "red",
+                            alignSelf: "flex-start",
+                            fontSize: 12,
+                            marginLeft: 50,
+                        }}>{errors.password}</Text>
                         <AppButton title="Sign up" onPress={handleSubmit} />
                     </>
                 )}
