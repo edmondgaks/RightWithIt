@@ -4,6 +4,9 @@ import AppButton from '../components/AppButton';
 import AppTextInput from '../components/AppTextInput';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import ErrorMessage from '../components/ErrorMessage';
+import AppFormField from '../components/AppFormField';
+import SubmitButton from '../components/SubmitButton';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
@@ -45,7 +48,7 @@ function LoginScreen(props) {
                 initialValues={{ email: '', password: ''}}
                 onSubmit={(values) => console.log(values)}
                 validationSchema={validationSchema}>
-                {({ handleChange,handleSubmit, errors }) => (
+                {() => (
                     <>
                         <Text style={{
                             alignSelf: "flex-start",
@@ -53,41 +56,61 @@ function LoginScreen(props) {
                             marginLeft: 50,
                             color: "#8E8C8C",
                         }}>Email</Text>
-                        <AppTextInput 
+                        <AppFormField 
                             autoCapitalize='none'
                             autoCorrect={false}
                             icon="email"
+                            name="email"
                             keyboardType='email-address'
                             placeholder='Email'
                             textContentType='emailAddress'
-                            onChangeText={handleChange("email")} />
-                        <Text style={{
-                            color: "red",
-                            alignSelf: "flex-start",
-                            fontSize: 12,
-                            marginLeft: 50,
-                        }}>{errors.email}</Text>
+                        />                        
                         <Text style={{
                             alignSelf: "flex-start",
                             fontSize: 15,
                             marginLeft: 50,
                             color: "#8E8C8C",
                         }}>Password</Text>
-                        <AppTextInput
+                        <AppFormField
                             autoCapitalize='none'
                             autoCorrect={false}
                             icon="lock"
+                            name="password"
                             secureTextEntry
                             placeholder='Password'
                             textContentType='password'
-                            onChangeText={handleChange("password")} />
+                        />
                         <Text style={{
-                            color: "red",
                             alignSelf: "flex-start",
-                            fontSize: 12,
+                            fontSize: 15,
                             marginLeft: 50,
-                        }}>{errors.password}</Text>
-                        <AppButton title="Sign up" onPress={handleSubmit} />
+                            color: "#8E8C8C",
+                        }}>Phone Number</Text>
+                        <AppFormField
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            icon="lock"
+                            name="number"
+                            secureTextEntry
+                            placeholder='Phone Number'
+                            textContentType='telephoneNumber'
+                        />
+                        <Text style={{
+                            alignSelf: "flex-start",
+                            fontSize: 15,
+                            marginLeft: 50,
+                            color: "#8E8C8C",
+                        }}>Confirm Password</Text>
+                        <AppFormField
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            icon="lock"
+                            name="password"
+                            secureTextEntry
+                            placeholder='Confirm Password'
+                            textContentType='password'
+                        />                       
+                        <SubmitButton title="Sign up" />
                     </>
                 )}
             </Formik>

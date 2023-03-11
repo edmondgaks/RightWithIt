@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 function AppButton({title}) {
     return (
-        <View style={styles.button}>
+        <TouchableOpacity style={styles.button}>
             <Text style={styles.text}>{title}</Text>
-        </View>
+        </TouchableOpacity>
     );
 }
 const styles = StyleSheet.create({
