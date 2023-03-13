@@ -13,13 +13,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#000000",
         justifyContent: "center",
         alignItems: "center",
-        padding: 15,
+        padding: 10,
         borderRadius: 50,
-        width: "50%"
+        width: "40%",
+        margin: 10,
     },
     text: {
         color: "#fff",
-        fontSize: 20, 
+        fontSize: 16, 
     },
 })
 export default AppButton;

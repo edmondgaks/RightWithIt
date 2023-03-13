@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         color: "red",
         alignSelf: "flex-start",
         fontSize: 12,
-        marginLeft: 50,
+        marginLeft: 70,
     },
 })
 
