@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native';
+import AppButton from '../components/AppButton';
+import AppTextInput from '../components/AppTextInput';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import ErrorMessage from '../components/ErrorMessage';
 import AppFormField from '../components/AppFormField';
 import SubmitButton from '../components/SubmitButton';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -12,7 +15,7 @@ const validationSchema = Yup.object().shape({
     password: Yup.string().required().min(4).label("Password")
 });
 
-function LoginScreen({ navigation }) {
+function SignupScreen({ navigation }) {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     return (
@@ -29,7 +32,7 @@ function LoginScreen({ navigation }) {
                     fontSize: 50, 
                     fontWeight: "bold",
                     color: "#fff",
-                     }}>Welcome Back !</Text>
+                     }}>Welcome !</Text>
                 <Text style={{
                     fontSize: 15,
                     color: "#fff"
@@ -37,7 +40,7 @@ function LoginScreen({ navigation }) {
             </View>
             <View style={{
                 backgroundColor: "#fff",
-                flex: 3,
+                flex: 4,
                 justifyContent: "center",
                 alignItems: "center",
                 borderTopLeftRadius: 30,
@@ -64,7 +67,21 @@ function LoginScreen({ navigation }) {
                             placeholder='Email'
                             textContentType='emailAddress'
                         />
-                                             
+                        <Text style={{
+                            alignSelf: "flex-start",
+                            fontSize: 12,
+                            marginLeft: 70,
+                            color: "#8E8C8C",
+                        }}>Phone Number</Text>
+                        <AppFormField
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            icon="lock"
+                            name="number"
+                            secureTextEntry
+                            placeholder='Phone Number'
+                            textContentType='telephoneNumber'
+                        />                        
                         <Text style={{
                             alignSelf: "flex-start",
                             fontSize: 12,
@@ -80,14 +97,29 @@ function LoginScreen({ navigation }) {
                             placeholder='Password'
                             textContentType='password'
                         />
-                                            
+                        
+                        <Text style={{
+                            alignSelf: "flex-start",
+                            fontSize: 12,
+                            marginLeft: 70,
+                            color: "#8E8C8C",
+                        }}>Confirm Password</Text>
+                        <AppFormField
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            icon="lock"
+                            name="password"
+                            secureTextEntry
+                            placeholder='Confirm Password'
+                            textContentType='password'
+                        />                       
                         <SubmitButton title="Sign up" />
                         <Text style={{
                             alignSelf: "center",
                             fontSize: 14,
                             marginTop: 8,
                             opacity: 0.5
-                        }}>Login either with: </Text>
+                        }}>Sign up either with: </Text>
                         
                         <View style={{
                             display: "flex",
@@ -101,7 +133,7 @@ function LoginScreen({ navigation }) {
                         <Text style={{
                             opacity: 0.5,
                             margin: 20,
-                        }}>Don't have an account? Sign In</Text>
+                        }}>Already have an account? Sign in</Text>
                     </>
                 )}
             </Formik>
@@ -118,4 +150,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default LoginScreen;
+export default SignupScreen;

@@ -1,12 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import { Dimensions,StyleSheet, Text, View, Image, SafeAreaView,Button, Alert, Platform } from 'react-native';
-import LoginScreen from './screens/LoginScreen';
+import SignupScreen from './screens/SignupScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  // console.log(Dimensions.get("screen"));
   return (
-    <LoginScreen />
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Login"
+          component={SignupScreen}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
